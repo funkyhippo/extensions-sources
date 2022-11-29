@@ -296,10 +296,12 @@ class MDContentRatingClass {
         {
             name: 'Suggestive',
             enum: 'suggestive',
+            default: true,
         },
         {
             name: 'Erotica',
-            enum: 'erotica'
+            enum: 'erotica',
+            default: true,
         },
         {
             name: 'Pornographic',
