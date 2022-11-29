@@ -3267,7 +3267,7 @@ class MangaDex extends paperback_extensions_common_1.Source {
             .addQueryParameter('offset', offset)
             .addQueryParameter('contentRating', ratings)
             .addQueryParameter('includes', ['cover_art'])
-            .addQueryParameter('order', { 'followedCount': 'desc' })
+            .addQueryParameter('order', { 'relevance': 'desc' })
             .addQueryParameter('includedTags', query.includedTags?.map(x => x.id))
             .addQueryParameter('includedTagsMode', query.includeOperator)
             .addQueryParameter('excludedTags', query.excludedTags?.map(x => x.id))
