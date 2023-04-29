@@ -3331,7 +3331,7 @@ class MangaDex extends paperback_extensions_common_1.Source {
                 request: createRequestObject({
                     url: new MangaDexHelper_1.URLBuilder(this.MANGADEX_API)
                         .addPathComponent('chapter')
-                        .addQueryParameter('limit', 100)
+                        .addQueryParameter('limit', 20)
                         .addQueryParameter('order', { 'publishAt': 'desc' })
                         .addQueryParameter('translatedLanguage', languages)
                         .addQueryParameter('includes', ['manga'])
