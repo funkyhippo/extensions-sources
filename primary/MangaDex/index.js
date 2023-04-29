@@ -3062,7 +3062,7 @@ class MangaDex extends paperback_extensions_common_1.Source {
         const json = (typeof response.data) === 'string' ? JSON.parse(response.data) : response.data;
         return new MangaDexHelper_1.URLBuilder(this.MANGADEX_API)
             .addPathComponent('manga')
-            .addQueryParameter('limit', 100)
+            .addQueryParameter('limit', 20)
             .addQueryParameter('contentRating', ratings)
             .addQueryParameter('includes', ['cover_art'])
             .addQueryParameter('ids', json.data.relationships.filter((x) => x.type == 'manga').map((x) => x.id))
@@ -3073,7 +3073,7 @@ class MangaDex extends paperback_extensions_common_1.Source {
         const request = createRequestObject({
             url: new MangaDexHelper_1.URLBuilder(this.MANGADEX_API)
                 .addPathComponent('manga')
-                .addQueryParameter('limit', 100)
+                .addQueryParameter('limit', 20)
                 .addQueryParameter('contentRating', ratings)
                 .addQueryParameter('ids', mangaIds)
                 .addQueryParameter('includes', ['cover_art'])
@@ -3263,7 +3263,7 @@ class MangaDex extends paperback_extensions_common_1.Source {
             // Since we already know that a title must exist, we can ignore this.
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             .addQueryParameter(searchType, (query.title?.length ?? 0) > 0 ? encodeURIComponent(query.title) : undefined)
-            .addQueryParameter('limit', 100)
+            .addQueryParameter('limit', 20)
             .addQueryParameter('offset', offset)
             .addQueryParameter('contentRating', ratings)
             .addQueryParameter('includes', ['cover_art'])
@@ -3288,7 +3288,7 @@ class MangaDex extends paperback_extensions_common_1.Source {
         results = await (0, MangaDexParser_1.parseMangaList)(json.data, this, MangaDexSettings_1.getSearchThumbnail);
         return createPagedResults({
             results,
-            metadata: { offset: offset + 100 }
+            metadata: { offset: offset + 20 }
         });
     }
     async getHomePageSections(sectionCallback) {
