@@ -507,7 +507,7 @@ export class MangaDex extends Source {
                 request: createRequestObject({
                     url: new URLBuilder(this.MANGADEX_API)
                         .addPathComponent('chapter')
-                        .addQueryParameter('limit', 100)
+                        .addQueryParameter('limit', 20)
                         .addQueryParameter('order', { 'publishAt': 'desc' })
                         .addQueryParameter('translatedLanguage', languages)
                         .addQueryParameter('includes', ['manga'])
