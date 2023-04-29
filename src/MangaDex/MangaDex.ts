@@ -193,7 +193,7 @@ export class MangaDex extends Source {
 
         return new URLBuilder(this.MANGADEX_API)
             .addPathComponent('manga')
-            .addQueryParameter('limit', 100)
+            .addQueryParameter('limit', 20)
             .addQueryParameter('contentRating', ratings)
             .addQueryParameter('includes', ['cover_art'])
             .addQueryParameter('ids', json.data.relationships.filter((x: any) => x.type == 'manga').map((x: any) => x.id))
@@ -206,7 +206,7 @@ export class MangaDex extends Source {
         const request = createRequestObject({
             url: new URLBuilder(this.MANGADEX_API)
                 .addPathComponent('manga')
-                .addQueryParameter('limit', 100)
+                .addQueryParameter('limit', 20)
                 .addQueryParameter('contentRating', ratings)
                 .addQueryParameter('ids', mangaIds)
                 .addQueryParameter('includes', ['cover_art'])
@@ -431,7 +431,7 @@ export class MangaDex extends Source {
             // Since we already know that a title must exist, we can ignore this.
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             .addQueryParameter(searchType, (query.title?.length ?? 0) > 0 ? encodeURIComponent(query.title!) : undefined)
-            .addQueryParameter('limit', 100)
+            .addQueryParameter('limit', 20)
             .addQueryParameter('offset', offset)
             .addQueryParameter('contentRating', ratings)
             .addQueryParameter('includes', ['cover_art'])
@@ -460,7 +460,7 @@ export class MangaDex extends Source {
 
         return createPagedResults({
             results,
-            metadata: { offset: offset + 100 }
+            metadata: { offset: offset + 20 }
         })
     }
 
