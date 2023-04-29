@@ -657,7 +657,7 @@ export class MangaDex extends Source {
             case 'popular': {
                 url = new URLBuilder(this.MANGADEX_API)
                     .addPathComponent('manga')
-                    .addQueryParameter('limit', 100)
+                    .addQueryParameter('limit', 20)
                     .addQueryParameter('order', { 'followedCount': 'desc' })
                     .addQueryParameter('offset', offset)
                     .addQueryParameter('contentRating', ratings)
@@ -668,7 +668,7 @@ export class MangaDex extends Source {
             case 'latest_updates': {
                 url = new URLBuilder(this.MANGADEX_API)
                     .addPathComponent('chapter')
-                    .addQueryParameter('limit', 100)
+                    .addQueryParameter('limit', 20)
                     .addQueryParameter('offset', offset)
                     .addQueryParameter('order', { 'publishAt': 'desc' })
                     .addQueryParameter('translatedLanguage', languages)
@@ -701,13 +701,13 @@ export class MangaDex extends Source {
 
         return createPagedResults({
             results,
-            metadata: { offset: offset + 100, collectedIds }
+            metadata: { offset: offset + 20, collectedIds }
         })
     }
 
     override async filterUpdatedManga(mangaUpdatesFoundCallback: (updates: MangaUpdates) => void, time: Date, ids: string[]): Promise<void> {
         let offset = 0
-        const maxRequests = 100
+        const maxRequests = 20
         let loadNextPage = true
         const updatedManga: string[] = []
         const updatedAt = time.toISOString().split('.')[0] // They support a weirdly truncated version of an ISO timestamp
@@ -717,7 +717,7 @@ export class MangaDex extends Source {
             const request = createRequestObject({
                 url: new URLBuilder(this.MANGADEX_API)
                     .addPathComponent('chapter')
-                    .addQueryParameter('limit', 100)
+                    .addQueryParameter('limit', 20)
                     .addQueryParameter('offset', offset)
                     .addQueryParameter('publishAtSince', updatedAt)
                     .addQueryParameter('order', { 'publishAt': 'desc' })
@@ -752,8 +752,8 @@ export class MangaDex extends Source {
                 }
             }
 
-            offset = offset + 100
-            if (json.total <= offset || offset >= 100 * maxRequests) {
+            offset = offset + 20
+            if (json.total <= offset || offset >= 20 * maxRequests) {
                 loadNextPage = false
             }
             if (mangaToUpdate.length > 0) {
